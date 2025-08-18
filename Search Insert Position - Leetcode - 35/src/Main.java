@@ -4,23 +4,33 @@ class Solution
     {
         int start = 0;
         int end = nums.length-1;
-        int mid = (start + end) / 2;
-        while (nums[mid] < target)
+
+        while (start <= end)
         {
-            if (nums[mid] < target)
+            int mid = (start + end) / 2;
+            if (nums[mid] == target)
             {
-                end = mid;
+                return mid;
+            }
+            else if (nums[mid] > target)
+            {
+                end = mid - 1;
+            }
+            else
+            {
+                start = mid + 1;
             }
         }
-        return 0;
+        return start;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int nums [] = {1,3,5,6};
-        int target = 5;
+        int nums [] = {1,1, 2, 4, 8, 9, 7, 8};
+        int target = 3;
         Solution solution = new Solution();
-        solution.searchInsert(nums, target);
+        int outputResult = solution.searchInsert(nums, target);
+        System.out.println("Insertion position will be: "+outputResult);
     }
 }
